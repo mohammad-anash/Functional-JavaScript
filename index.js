@@ -110,7 +110,7 @@ function addName() {
   return name;
 }
 console.log(addName());
-console.log(name); // change the original value after the create.
+// console.log(name); // change the original value after the create.
 
 // Immutable data type Example;
 // let say we have a obj
@@ -124,3 +124,49 @@ console.log(obj2); // {name: 'anash', age: 50, city: 'romania'}
 // 4 => what is currying in Javascript;
 
 // currying in javascript transform a function with mulitplr argument into a nested series of function each take single argument. currying help you to avoid passing the same variable multiple time. and its help you to create higher order function
+
+// 5 => what is closure in js
+
+//  closure is the combination of function bundled together with referrence to its surronding state (the laxical environment) in other words. closure give you access an outer scope from an inner function.
+
+// let's see example
+
+function outer() {
+  let personName = "anash";
+  function inner() {
+    console.log(personName); // we are acces the name variable inside the inner function but the name varible declare outside the function.
+  }
+  inner();
+}
+outer();
+// console.log(personName); // it give you error
+
+// another function of closure
+
+function createMultiplier(factor) {
+  return function (number) {
+    // return number * factor;
+    console.log(`factor ${factor}`, `number ${number}`);
+  };
+}
+
+const double = createMultiplier(2);
+// console.log(double(5)); // Output: 10
+
+const triple = createMultiplier(3);
+// console.log(triple(5)); // Output: 15
+
+// Real Life Example
+function makeSizer(size) {
+  return function () {
+  document.body.style.fontSize = size + "px";
+  };
+}
+
+var size12 = makeSizer(12);
+var size14 = makeSizer(14);
+var size16 = makeSizer(16);
+
+document.getElementById("size-12").onclick = size12;
+document.getElementById("size-14").onclick = size14;
+document.getElementById("size-16").onclick = size16;
